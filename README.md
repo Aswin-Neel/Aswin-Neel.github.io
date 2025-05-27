@@ -1,2 +1,3 @@
-# Aswin-Neel.github.io
-personal website
+# Aswin N Website
+
+Static portfolio site for GitHub Pages deployment.
