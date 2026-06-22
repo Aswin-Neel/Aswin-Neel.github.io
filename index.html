@@ -3,77 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aswin N | Physics Research Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+  <title>Aswin N | Astrophysics Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body>
 
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-gray-800 to-gray-700 text-white shadow-md">
-    <div class="container mx-auto flex justify-between items-center p-5">
-      <div class="text-2xl font-bold">Aswin N</div>
-      <nav class="space-x-6 text-lg">
-        <a href="#home" class="hover:underline">Home</a>
-        <a href="#research" class="hover:underline">Research</a>
-        <a href="#cv" class="hover:underline">CV</a>
-        <a href="#contact" class="hover:underline">Contact</a>
-      </nav>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">AN<span class="logo-dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#research" class="nav-link">Research</a></li>
+        <li><a href="#cv" class="nav-link">CV</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
+  </nav>
 
-  <!-- Home Section -->
-  <section id="home" class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
-    <img src="profile.jpg" alt="Profile Picture" class="w-40 h-40 rounded-full shadow-lg mb-6 md:mb-0 md:mr-10 border-4 border-gray-700" />
-    <div class="text-center md:text-left">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white">Hi, I'm Aswin N</h1>
-      <p class="mt-4 text-xl text-gray-300">3rd Year Physics Major (BS-MS), IISER Berhampur</p>
-      <p class="mt-3 text-md text-gray-400 max-w-xl">Exploring the universe through Large Scale Structures, Galactic Clustering, and Cosmology. Passionate about theoretical foundations and numerical techniques.</p>
-      <div class="mt-6 space-x-4">
-        <a href="#cv" class="px-5 py-2 bg-purple-600 text-white rounded shadow hover:bg-purple-700">View CV</a>
-        <a href="#research" class="px-5 py-2 border border-purple-600 text-purple-400 rounded hover:bg-purple-700 hover:text-white">My Work</a>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <canvas id="cosmosCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal">Physics Researcher · IISER Berhampur</div>
+        <h1 class="hero-name reveal">Aswin N</h1>
+        <p class="hero-tagline reveal">Tracing the large-scale structure of the universe — through data, simulations, and curiosity.</p>
+        <p class="hero-sub reveal">3rd Year BS-MS · Astrophysics · Cosmology · AGN Science</p>
+        <div class="hero-cta reveal">
+          <a href="#cv" class="btn btn-primary">View CV</a>
+          <a href="#research" class="btn btn-ghost">My Work</a>
+        </div>
       </div>
+      <div class="hero-photo reveal">
+        <img src="profile.jpg" alt="Aswin N" class="hero-avatar" />
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
   <!-- Research Section -->
-  <section id="research" class="bg-gray-800 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-white mb-6">Current Research Interests</h2>
-      <p class="text-gray-300 mb-4">As a physics undergraduate, I'm interested in computational techniques and theoretical models applied to cosmology and astrophysics.</p>
-      <p class="text-gray-400">I’m actively working on <a href="https://drive.google.com/file/d/17Brf8vWUVKxArRcpmpgvBwNow61HIllA/view?usp=sharing" target="_blank" class="text-purple-400 hover:underline">projects involving eROSITA/eBOSS data</a>, <a href="https://aswin-n.notion.site/PUG-project-Theory-projected-correlation-function-efa0648c9da844d2a3c7340155109399" target="_blank" class="text-purple-400 hover:underline">large-scale structure correlation functions</a>, and black hole merger history analysis. Stay tuned!</p>
+  <section id="research" class="section research-section">
+    <div class="container">
+      <div class="section-label reveal">Research</div>
+      <h2 class="section-title reveal">Current Interests</h2>
+
+      <div class="research-intro reveal">
+        <p>As a physics undergraduate, I work at the intersection of observational data and theoretical models — building computational pipelines to understand how galaxies and black holes evolve within the cosmic web.</p>
+      </div>
+
+      <div class="research-grid">
+        <div class="research-card reveal">
+          <div class="card-glyph">◎</div>
+          <h3>AGN Mass-Merger History</h3>
+          <p>Analysing black hole accretion episodes in cosmological simulations (NINJA), investigating how AGN feedback couples to halo environments across redshift.</p>
+          <a href="#contact" class="card-link">Reach out to discuss →</a>
+        </div>
+        <div class="research-card reveal">
+          <div class="card-glyph">⬡</div>
+          <h3>Large-Scale Structure</h3>
+          <p>Working on projected correlation functions for QSO clustering, using eBOSS spectroscopic data to probe galaxy bias and the cosmic matter power spectrum.</p>
+          <a href="https://drive.google.com/file/d/17Brf8vWUVKxArRcpmpgvBwNow61HIllA/view?usp=sharing" target="_blank" class="card-link">Report →</a>
+          <a href="https://aswin-n.notion.site/PUG-project-Theory-projected-correlation-function-efa0648c9da844d2a3c7340155109399" target="_blank" class="card-link">Correlation functions →</a>
+        </div>
+        <div class="research-card reveal">
+          <div class="card-glyph">⟁</div>
+          <h3>Radio Astronomy</h3>
+          <p>Cross-matching LoTSS DR3 radio sources with X-ray cluster catalogs to classify AGN morphologies — FR-I/II, DDRGs, bent-tail sources — and estimate cavity power.</p>
+          <a href="#contact" class="card-link">Reach out to discuss →</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CV Section -->
-  <section id="cv" class="bg-gray-900 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-white mb-6">Curriculum Vitae</h2>
-      <p class="text-gray-300">You can <a href="CV.pdf" class="text-purple-400 hover:underline">download my CV here</a> to see my academic background, projects, and technical skills.</p>
+  <section id="cv" class="section cv-section">
+    <div class="container">
+      <div class="section-label reveal">Curriculum Vitae</div>
+      <h2 class="section-title reveal">Academic Background</h2>
+      <p class="cv-text reveal">My CV details academic training, research projects, technical skills (Python, HPC pipelines, radio/X-ray data reduction), and publications-in-progress.</p>
+      <div class="cv-download reveal">
+        <a href="CV.pdf" class="btn btn-primary" download>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 1v9M4 7l4 4 4-4M2 14h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Download CV
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="bg-gray-800 py-16">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-semibold text-white mb-6">Get in Touch</h2>
-      <p class="text-gray-300">Feel free to reach out for collaborations, academic discussions, or project inquiries.</p>
-      <p class="mt-4 text-gray-300">Email: <a href="mailto:naswin200412@gmail.com" class="text-purple-400 hover:underline">naswin200412@gmail.com</a></p>
-      <div class="mt-6 space-x-6">
-        <a href="https://github.com/Aswin-Neel" target="_blank" class="text-purple-400 hover:underline">GitHub</a>
-        <a href="https://www.linkedin.com/in/aswin-n-09112b268/" target="_blank" class="text-purple-400 hover:underline">LinkedIn</a>
-        <a href="https://gitlab.com/aswin221" target="_blank" class="text-purple-400 hover:underline">Gitlab</a>
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-title reveal">Get in Touch</h2>
+      <p class="contact-text reveal">Open to collaborations, academic discussions, research projects, and reading group invitations.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:naswin200412@gmail.com" class="contact-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          naswin200412@gmail.com
+        </a>
+      </div>
+      <div class="contact-links reveal">
+        <a href="https://github.com/Aswin-Neel" target="_blank" class="contact-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.262.82-.582 0-.288-.012-1.243-.017-2.252-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.51 11.51 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.699.825.58C20.565 21.795 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/aswin-n-09112b268/" target="_blank" class="contact-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://gitlab.com/aswin221" target="_blank" class="contact-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.955 13.587l-1.342-4.135-2.664-8.189a.455.455 0 0 0-.867 0L16.418 9.45H7.582L4.918 1.263a.455.455 0 0 0-.867 0L1.386 9.45.044 13.587a.924.924 0 0 0 .331 1.023L12 23.054l11.625-8.444a.92.92 0 0 0 .33-1.023z"/></svg>
+          GitLab
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-700 text-gray-200 text-center py-4">
-    <p>&copy; 2025 Aswin N. All rights reserved.</p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Aswin N</span>
+      <span class="footer-copy">&copy; 2025 · All rights reserved</span>
+    </div>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
