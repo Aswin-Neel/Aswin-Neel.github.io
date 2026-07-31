@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The IISER Anomaly: Across the Spider-Verse</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #161f33;
+            --accent-spider: #ef4444;
+            --accent-web: #38bdf8;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #24344d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.6), 0 10px 12px -5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-spider);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .location {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .passage-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .passage-text {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        .spider-sense {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid var(--accent-gold);
+            padding: 12px 16px;
+            border-radius: 4px 8px 8px 4px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .choice-btn:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-spider);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .choice-btn::after {
+            content: "🕸️";
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: transform 0.2s ease;
+        }
+
+        .choice-btn:hover::after {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        /* Password Lock Overlay Styles */
+        #lock-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 18px;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.8);
+            color: #ffffff;
+            font-size: 1.05rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .password-input:focus {
+            border-color: var(--accent-spider);
+        }
+
+        .unlock-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: var(--accent-spider);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .unlock-btn:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: var(--accent-spider);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        #game-content {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .restart-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.8rem;
+        }
+
+        .restart-btn:hover {
+            color: var(--accent-spider);
+        }
+
+        .heart {
+            color: var(--accent-spider);
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span class="badge">🕸️ SPIDER-VERSE PROTOCOL</span>
+        <span class="location">📍 IISER Berhampur Permanent Campus</span>
+    </div>
+
+    <!-- Password Lock Screen Screen -->
+    <div id="lock-screen">
+        <div class="lock-icon">🔒🕸️</div>
+        <div class="passage-title">Encrypted Transmission</div>
+        <p class="passage-text">This mission briefing is classified under Spider-Verse Clearance Level 1. Enter the passcode to proceed.</p>
+        <input type="password" id="password-input" class="password-input" placeholder="Enter Secret Passcode..." onkeydown="if(event.key==='Enter') verifyPassword()">
+        <button class="unlock-btn" onclick="verifyPassword()">Unlock Mission 🕷️</button>
+        <p id="password-error" class="error-msg">⚡ Spider-Sense Buzzer: Incorrect passcode! Try again.</p>
+    </div>
+
+    <!-- Main Game Container -->
+    <div id="game-content">
+        <div id="game-node"></div>
+
+        <div class="footer">
+            <span>Girlfriend's Day Special Edition</span>
+            <button class="restart-btn" onclick="goToPassage('Start')">Restart Mission</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// SET YOUR SECRET PASSCODE HERE (case-insensitive)
+const PASSCODE = "astra"; 
+
+function verifyPassword() {
+    const input = document.getElementById("password-input").value.trim().toLowerCase();
+    const errorMsg = document.getElementById("password-error");
+    
+    if (input === PASSCODE) {
+        document.getElementById("lock-screen").style.display = "none";
+        document.getElementById("game-content").style.display = "block";
+        goToPassage("Start");
+    } else {
+        errorMsg.style.display = "block";
+    }
+}
+
+const story = {
+    "Start": {
+        title: "Chapter 1: The Morning Anomaly",
+        text: "You wake up in your hostel room at IISER Berhampur. The coastal morning light streams in, and your brain is already calculating the amount of caffeine required to survive today's physics schedule.\n\nAs you reach for your phone, your internal *Spider-Sense* tingles! ⚡\n\nThere, sitting right on your desk beside your lab notebooks, is a sleek package sealed with a Spider-Man sticker. A note attached reads:\n\n'PROPERTY OF PETER PARKER (OR YOUR LDR BOYFRIEND). DO NOT TOUCH UNTIL FULLY CAFFEINATED. OR TOUCH IT NOW IF YOU HAVE HIGH CAFFEINE-TOLERANCE.'",
+        choices: [
+            { text: "Head out to get your essential morning coffee first.", target: "CoffeeMission" },
+            { text: "Ignore the coffee rule and inspect the package immediately.", target: "InspectPackage" },
+            { text: "Focus your Spider-Sense to analyze the room.", target: "SpiderSenseSearch" }
+        ]
+    },
+    "SpiderSenseSearch": {
+        title: "Spider-Sense Activated!",
+        sense: "⚡ *ZZZZT!* Your tingling intuition detects trace amounts of coffee bean aroma and extreme levels of affection in the room.",
+        text: "You scan the desk. Besides the Spider-Man sticker package, there is a handwritten coaster that says: 'World's Greatest IISER Genius.'\n\nClearly, someone miles away spent way too much time setting this up for you.",
+        choices: [
+            { text: "Alright, time to grab that crucial coffee now.", target: "CoffeeMission" },
+            { text: "Open the mysterious Spider-Man package!", target: "InspectPackage" }
+        ]
+    },
+    "CoffeeMission": {
+        title: "Chapter 2: The Coffee Run",
+        text: "You step out into the crisp campus air and head straight toward your coffee spot. You cannot function on pure quantum mechanics alone-coffee is the actual fuel of science.\n\nAs you order your hot coffee, the barista hands you your cup. But tied around the cup sleeve is a custom paper web tag with a cipher written on it:\n\n'Passcode hint: Where in this campus did two people share their very first kiss?'",
+        choices: [
+            { text: "Option A: Academic Block", target: "DecodedMemory" },
+            { text: "Option B: The Amphitheatre", target: "WrongSpotAmphitheatre" },
+            { text: "Option C: Outside the Hostel", target: "WrongSpotHostel" }
+        ]
+    },
+    "InspectPackage": {
+        title: "Rule Breaker! (Classic Spider-Gwen Move)",
+        sense: "⚡ *Spider-Sense Alert!* Attempting to decode classified files without coffee may cause temporary drowsiness!",
+        text: "You tear open the Spider-Man sticker! Inside is a custom tech drive labeled: 'Multiverse Communication Node: Earth-IISER'.\n\nA digital lock pops up on the screen with a prompt:\n\n[SECURITY CHALLENGE]: 'To unlock, select the exact location on campus where our story took a major turn (Hint: First Kiss site at IISER).'",
+        choices: [
+            { text: "Option A: Academic Block", target: "DecodedMemory" },
+            { text: "Option B: The Amphitheatre", target: "WrongSpotAmphitheatre" },
+            { text: "Option C: Outside the Hostel", target: "WrongSpotHostel" }
+        ]
+    },
+    "WrongSpotAmphitheatre": {
+        title: "Access Denied: The Amphitheatre ❌",
+        sense: "⚡ *Spider-Sense Buzzer!*",
+        text: "The terminal blinks red:\n\n'Incorrect! While the Amphitheatre is great for events and gatherings, that wasn't where the magic happened!'",
+        choices: [
+            { text: "Try another location...", target: "InspectPackage" }
+        ]
+    },
+    "WrongSpotHostel": {
+        title: "Access Denied: Hostel Grounds ❌",
+        sense: "⚡ *Spider-Sense Buzzer!*",
+        text: "The terminal blinks red:\n\n'Close, but no superhero cigar! Hostel walks are iconic, but you need to think back to that exact special spot!'",
+        choices: [
+            { text: "Try another location...", target: "InspectPackage" }
+        ]
+    },
+    "DecodedMemory": {
+        title: "Chapter 3: The Memory Vault",
+        text: "ACCESS GRANTED! 🕷️✨\n\nThe terminal screen glows softly as a video animation plays, showing a web slinging across a map directly connecting your spot at IISER Berhampur to where he is.\n\nA message pops up on screen:\n\n'That first kiss right here on campus changed everything. Out of all the multiverses, timelines, and quantum possibilities... finding you was the greatest canon event of my life.'\n\nThe screen splits into three new classified files. Which one do you access first?",
+        choices: [
+            { text: "File 1: The 'Why You're My Favorite Superhero' Dossier", target: "DossierFile" },
+            { text: "File 2: The 'Multiverse Reunion Plan'", target: "ReunionPlan" },
+            { text: "File 3: Daily Bugle Front Page Headline", target: "DailyBugle" }
+        ]
+    },
+    "DossierFile": {
+        title: "Classified Dossier: Hero Profile",
+        text: "HERO NAME: Seelie\nSPECIAL POWERS:\n• Master of complex science & neurobio\n• Impeccable sense of humor\n• Impeccable literary taste\n• Converts coffee into pure intelligence\n• Has a smile that collapses distance instantly across hundreds of miles\n• Superior taste in superheroes (Spider-Man approved!)\n\nWEAKNESS: Long distance (but temporary!).",
+        choices: [
+            { text: "Check File 2: The Multiverse Reunion Plan", target: "ReunionPlan" },
+            { text: "Check File 3: Daily Bugle Front Page", target: "DailyBugle" },
+            { text: "Unlock the Final Spider-Message", target: "FinalMessage" }
+        ]
+    },
+    "DailyBugle": {
+        title: "📰 THE DAILY BUGLE - SPECIAL EDITION",
+        text: "HEADLINE: 'LOCAL SCIENTIST STEALS BOYFRIEND'S HEART FROM MILES AWAY!'\n\nIn a shocking turn of events, sources confirm that distance has failed to diminish the cutest relationship in the universe.\n\nPeter Parker was quoted saying: 'With great love comes great responsibility to make sure she knows how much she is cherished on Girlfriend's Day!'",
+        choices: [
+            { text: "Check File 1: Hero Profile Dossier", target: "DossierFile" },
+            { text: "Check File 2: The Reunion Plan", target: "ReunionPlan" },
+            { text: "Unlock the Final Spider-Message", target: "FinalMessage" }
+        ]
+    },
+    "ReunionPlan": {
+        title: "Chapter 4: Operation Web-Sling",
+        text: "REUNION PROTOCOL INITIATED:\n\n1. Step 1: Finish off your coffee and crush your goals today.\n2. Step 2: Continuous countdown until our next real-life reunion.\n3. Step 3: When we meet, we get married, no long distance holding us back afterwards!\n\n'No matter how many miles lie between us, we are tied together by an unbreakable web.'",
+        choices: [
+            { text: "Proceed to the Final Girlfriend's Day Note", target: "FinalMessage" }
+        ]
+    },
+    "FinalMessage": {
+        title: "Happy Girlfriend's Day, My Superhero! <span class='heart'>♥</span>",
+        text: "Happy Girlfriend's Day! 🕸️❤️\n\nSomewhere out there, across a few hundred kilometers and probably several chai breaks, is you: at IISER Berhampur, doing incredible things, being brilliant, being you. And somewhere here is me, still stuck on the same thought I've had since the day I first saw you on campus: how did I get lucky enough to end up in the timeline where we actually happened?\n\nI built you this little story because a normal text felt too small for today. Some days call for a 'Happy Girlfriend's Day' message. Today called for something you'd actually want to click through, get lost in, and smile at, a tiny adventure, made just for you.\n\nBecause honestly, being with you already feels like the best adventure I've ever stumbled into. Every late-night call that turned into 2 AM because neither of us wanted to hang up first. Every coffee-fueled study session that somehow turned into just talking instead. Every version of you I've gotten to fall for a little more: brilliant you, tired-but-still-showing-up you, sleepy you, excited-about-something-nerdy you. All of it. I'd choose every single one, every time, in every universe.\n\nSo no matter how many timelines or spider-verses exist out there, I'd find my way to you in every single one. That's not even a choice at this point, it's just a fact of the multiverse.\n\nI love you 3000, Seelie. Happy Girlfriend's Day.\n\nNow go pick a path; I made a few just for you. 🕸️",
+        choices: [
+            { text: "Replay the Spider-Verse Adventure", target: "Start" }
+        ]
+    }
+};
+
+function goToPassage(passageKey) {
+    const node = story[passageKey];
+    if (!node) return;
+
+    const gameContainer = document.getElementById("game-node");
+    
+    let html = `<div class="passage-title">${node.title}</div>`;
+    
+    if (node.sense) {
+        html += `<div class="spider-sense">${node.sense}</div>`;
+    }
+    
+    html += `<div class="passage-text">${node.text}</div>`;
+    html += `<div class="choices">`;
+    
+    node.choices.forEach(choice => {
+        html += `<button class="choice-btn" onclick="goToPassage('${choice.target}')">${choice.text}</button>`;
+    });
+    
+    html += `</div>`;
+    
+    gameContainer.innerHTML = html;
+}
+</script>
+</body>
+</html>
